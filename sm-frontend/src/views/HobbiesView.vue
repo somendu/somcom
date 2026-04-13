@@ -2,8 +2,8 @@
 import { ref, onMounted } from "vue";
 
 const images = ref([]);
-const API_BASE = "https://sm-backend-1071867209793.us-central1.run.app";
-const API_URL = "https://sm-backend-1071867209793.us-central1.run.app/api/portfolio";
+const API_BASE = import.meta.env.VITE_API_BASE;
+const API_URL = `${API_BASE}/api/portfolio`;
 
 onMounted(async () => {
   const res = await fetch(API_URL);
