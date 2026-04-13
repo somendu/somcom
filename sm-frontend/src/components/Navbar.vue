@@ -1,6 +1,8 @@
 <template>
   <nav class="nav">
-    <div class="logo">Somendu</div>
+    <div class="logo">
+      <img src="/som.png" alt="Somendu"/>
+    </div>
 
     <div class="links">
       <router-link to="/">Home</router-link>
@@ -18,8 +20,9 @@
   border-bottom: 1px solid #ddd;
 }
 
-.logo {
-  font-weight: bold;
+.logo img {
+  height: 40px;
+  width: auto;
 }
 
 .links a {
