@@ -2,23 +2,23 @@
 import { ref, onMounted } from "vue";
 
 const images = ref([]);
+const API_BASE = "https://sm-backend-1071867209793.us-central1.run.app";
+const API_URL = "https://sm-backend-1071867209793.us-central1.run.app/api/portfolio";
+
+onMounted(async () => {
+  const res = await fetch(API_URL);
+  images.value = await res.json();
+});
 
 const selectedImage = ref(null);
 
-const openImage = (img) => {
-  selectedImage.value = img.url;
+const openImage = (url) => {
+  selectedImage.value = API_BASE + url;
 };
 
 const closeImage = () => {
   selectedImage.value = null;
 };
-
-onMounted(async () => {
-  const res = await fetch("http://localhost:8080/api/portfolio");
-  const data = await res.json();
-
-  images.value = data; // keep full object
-});
 </script>
 
 <template>
@@ -31,15 +31,11 @@ onMounted(async () => {
 
     <div class="gallery">
       <div v-for="img in images" :key="img.url" class="card">
+        <img :src="API_BASE + img.url" @click="openImage(img.url)" />
 
-        <img
-          :src="'http://localhost:8080' + img.url"
-          @click="openImage(img)"
-        />
-
-        <div class="overlay-text">
-          {{ img.title }}
-        </div>
+      <div class="overlay-text">
+        <span>{{ img.title }}</span>
+      </div>
       </div>
     </div>
 
