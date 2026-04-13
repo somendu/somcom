@@ -21,8 +21,9 @@ public class PortfolioService {
 
     public List<Image> getImages() {
         return List.of(
-                new Image("/images/porfolio-1-300x500.jpg", "Leh Trip"),
-                new Image("/images/porfolio-2-300x500.jpg", "Bangkok Trip")
+                new Image("/images/portfolio1.jpg", "Cambodia Island Bar"),
+                new Image("/images/portfolio2.jpg", "Samudra Manthan Bangkok Airport"),
+                new Image("/images/portfolio3.jpg", "Flower Decoration")
         );
     }
 }
