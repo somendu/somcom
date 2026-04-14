@@ -1,6 +1,8 @@
 
 Deploying Back end 
 
+D:\Work-Area\Workspaces\Maiti-Project\sm-backend>gradle build
+
 D:\Work-Area\Workspaces\Maiti-Project\sm-backend>gcloud builds submit --tag gcr.io/nice-forge-221113/sm-backend
 
 D:\Work-Area\Workspaces\Maiti-Project\sm-backend>gcloud run deploy sm-backend ^
