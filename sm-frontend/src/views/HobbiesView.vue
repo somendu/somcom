@@ -2,23 +2,23 @@
 import { ref, onMounted } from "vue";
 
 const images = ref([]);
+const API_BASE = import.meta.env.VITE_API_BASE;
+const API_URL = `${API_BASE}/api/portfolio`;
+
+onMounted(async () => {
+  const res = await fetch(API_URL);
+  images.value = await res.json();
+});
 
 const selectedImage = ref(null);
 
-const openImage = (img) => {
-  selectedImage.value = img;
+const openImage = (url) => {
+  selectedImage.value = API_BASE + url;
 };
 
 const closeImage = () => {
   selectedImage.value = null;
 };
-
-onMounted(async () => {
-  const res = await fetch("http://localhost:8080/api/portfolio");
-  const data = await res.json();
-
-  images.value = data.map(item => item.url);
-});
 </script>
 
 <template>
@@ -30,17 +30,19 @@ onMounted(async () => {
       <h2>📸 Photography</h2>
 
     <div class="gallery">
-      <img
-        v-for="img in images"
-        :key="img"
-        :src="'http://localhost:8080' + img"
-        @click="openImage('http://localhost:8080' + img)"
-      />
+      <div v-for="img in images" :key="img.url" class="card">
+        <img :src="API_BASE + img.url" @click="openImage(img.url)" />
+
+      <div class="overlay-text">
+        <span>{{ img.title }}</span>
+      </div>
+      </div>
     </div>
 
-      <div v-if="selectedImage" class="overlay" @click="closeImage">
-        <img :src="selectedImage" class="fullscreen" />
-      </div>
+
+    <div v-if="selectedImage" class="overlay" @click="closeImage">
+       <img :src="selectedImage" class="fullscreen" />
+    </div>
 
     </section>
 
@@ -68,19 +70,51 @@ onMounted(async () => {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
-  margin-top: 20px;
 }
 
-.gallery img {
-  width: 100%;
+.card {
+  position: relative;
+  overflow: hidden;
   border-radius: 10px;
-  transition: transform 0.3s ease;
-  cursor: zoom-in;
 }
 
-.gallery img:hover {
-  transform: scale(1.05);
+.card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
+
+/* Hover zoom */
+.card:hover img {
+  transform: scale(1.1);
+}
+
+/* Overlay */
+.overlay-text {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 15px;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  font-size: 14px;
+
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Show on hover */
+.card:hover .overlay-text {
+  opacity: 1;
+}
+
+.title {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #555;
+}
+
 .overlay {
   position: fixed;
   top: 0;
