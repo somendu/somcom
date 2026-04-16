@@ -2,8 +2,8 @@
 import { ref, onMounted } from "vue";
 
 const images = ref([]);
-const API_BASE = import.meta.env.VITE_API_BASE;
-const API_URL = `${API_BASE}/api/portfolio`;
+const API_BASE = "/api";
+const API_URL = "/api/portfolio";
 
 onMounted(async () => {
   const res = await fetch(API_URL);
@@ -13,7 +13,7 @@ onMounted(async () => {
 const selectedImage = ref(null);
 
 const openImage = (url) => {
-  selectedImage.value = API_BASE + url;
+  selectedImage.value = url;
 };
 
 const closeImage = () => {
@@ -31,7 +31,7 @@ const closeImage = () => {
 
     <div class="gallery">
       <div v-for="img in images" :key="img.url" class="card">
-        <img :src="API_BASE + img.url" @click="openImage(img.url)" />
+        <img :src="img.url" @click="openImage(img.url)" />
 
       <div class="overlay-text">
         <span>{{ img.title }}</span>

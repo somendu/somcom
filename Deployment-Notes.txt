@@ -1,0 +1,21 @@
+
+Deploying Back end 
+
+D:\Work-Area\Workspaces\Maiti-Project\sm-backend>gradle build
+
+D:\Work-Area\Workspaces\Maiti-Project\sm-backend>gcloud builds submit --tag gcr.io/nice-forge-221113/sm-backend
+
+D:\Work-Area\Workspaces\Maiti-Project\sm-backend>gcloud run deploy sm-backend ^
+--image gcr.io/nice-forge-221113/sm-backend ^
+--platform managed ^
+--region us-central1 ^
+--allow-unauthenticated
+
+
+Deploying front end 
+
+package.json 
+added --> "build-deploy": "npm run build && firebase deploy"
+
+D:\Work-Area\Workspaces\Maiti-Project\sm-frontend>npm run build-deploy
+ 
