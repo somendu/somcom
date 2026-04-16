@@ -3,9 +3,9 @@
  */
 package com.somendu.somweb.controller;
 
+import com.somendu.somweb.dto.ImageDto;
 import org.springframework.web.bind.annotation.*;
 
-import com.somendu.somweb.model.Image;
 import com.somendu.somweb.service.PortfolioService;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public class PortfolioController {
     }
 
     @GetMapping
-    public List<Image> getPortfolio() {
+    public List<ImageDto> getPortfolio() {
         return portfolioService.getImages();
     }
 }

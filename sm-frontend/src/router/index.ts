@@ -1,7 +1,12 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-import HomeView from '../views/HomeView.vue'
-import HobbiesView from '../views/HobbiesView.vue'
+// Lazy loading (better for performance)
+const HomeView = () => import('../views/HomeView.vue')
+const AboutView = () => import('../views/AboutView.vue')
+const HobbiesView = () => import('../views/hobbies/HobbiesView.vue')
+const PhotographyView = () => import('../views/hobbies/PhotographyView.vue')
+const BlogView = () => import('../views/hobbies/BlogView.vue')
+const BadmintonView = () => import('../views/hobbies/BadmintonView.vue')
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -13,10 +18,28 @@ const router = createRouter({
     },
     {
       path: '/hobbies',
-      name: 'hobbies',
-      component: HobbiesView
+      component: HobbiesView,
+      children: [
+        {
+          path: '',
+          component: PhotographyView   // default page
+        },
+        {
+          path: 'writeup',
+          component: BlogView
+        },
+        {
+          path: 'playa',
+          component: BadmintonView
+        }
+      ]
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: AboutView
     }
   ]
 })
 
-export default router;
+export default router

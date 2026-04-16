@@ -3,8 +3,8 @@
  */
 package com.somendu.somweb.controller;
 
+import com.somendu.somweb.dto.BlogPostDto;
 import org.springframework.web.bind.annotation.RestController;
-import com.somendu.somweb.model.BlogPost;
 import com.somendu.somweb.service.BlogService;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +29,7 @@ public class BlogController {
     }
 
     @GetMapping
-    public List<BlogPost> getBlogs() {
+    public List<BlogPostDto> getBlogs() {
         return blogService.getPosts();
     }
 }

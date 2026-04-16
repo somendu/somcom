@@ -15,6 +15,10 @@
         }
       },
       {
+        "source": "/images/**",
+        "destination": "/images/$1"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
