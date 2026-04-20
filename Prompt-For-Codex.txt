@@ -1,0 +1,168 @@
+You are a senior full-stack architect and engineer.
+
+Build a production-ready, scalable web application with:
+
+- Frontend: Vue 3 + Vite + Vue Router + Pinia
+- Backend: Java 21 + Spring Boot 3
+- Database: [choose one: Firestore / Cloud SQL PostgreSQL]
+- Auth: Firebase Authentication
+- Hosting/Deployment:
+  - Vue frontend deployed on Firebase Hosting
+  - Spring Boot backend deployed on Google Cloud Run
+  - Firebase Hosting rewrites/proxies API requests to the backend
+- All code must be configuration-driven and environment-based
+- Output complete, runnable code with clear folder structure
+
+Project requirements:
+
+1. Architecture
+- Use a clean monorepo or clearly separated frontend and backend folders
+- frontend/
+- backend/
+- infra/
+- docs/
+- Keep frontend and backend loosely coupled
+- Backend must expose REST APIs under /api
+- Frontend must consume APIs through environment-configured base URLs
+- Support dev, staging, and production environments
+
+2. Frontend requirements
+- Vue 3 with Composition API
+- Vite-based setup
+- Vue Router for navigation
+- Pinia for state management
+- Responsive UI
+- Reusable components
+- Proper route guards for authenticated pages
+- Environment-based config using .env files
+- API client abstraction layer
+- Error handling, loading states, and toast notifications
+- Form validation
+- Production build optimized for Firebase Hosting
+
+3. Backend requirements
+- Spring Boot 3 with Maven or Gradle
+- Layered architecture:
+  - controller
+  - service
+  - repository
+  - dto
+  - config
+  - security
+- Externalized configuration via application.yml and environment variables
+- CORS configured for Firebase Hosting domain(s)
+- JWT / Firebase token validation for secured endpoints
+- Health check endpoint
+- Logging
+- Global exception handling
+- Validation
+- Swagger/OpenAPI
+- Pagination, filtering, sorting for list APIs
+- Dockerfile for Cloud Run deployment
+- Cloud Run friendly configuration
+- Actuator enabled where appropriate
+
+4. Firebase requirements
+- Firebase Hosting config for SPA routing
+- Firebase Hosting rewrites:
+  - static frontend served from Hosting
+  - /api routed to Cloud Run backend
+- Firebase Authentication integration on frontend
+- Backend verifies Firebase ID tokens using Firebase Admin SDK
+- Provide firebase.json and .firebaserc examples
+- Provide setup notes for Firebase project configuration
+
+5. Security requirements
+- No hardcoded secrets
+- Use environment variables / secret managers
+- Role-based access support
+- Secure headers where appropriate
+- Input validation on frontend and backend
+- CSRF considerations explained if applicable
+- CORS must be restrictive and configurable
+
+6. Configuration-driven design
+- No hardcoded URLs, ports, keys, project IDs, or allowed origins
+- Use config files and env vars for:
+  - API base URL
+  - Firebase project settings
+  - allowed CORS origins
+  - backend port
+  - database connection
+  - logging levels
+  - profile/environment selection
+- Include .env.example for frontend
+- Include application-dev.yml, application-staging.yml, application-prod.yml for backend
+- Include sample deployment variables
+
+7. Scalability and maintainability
+- Modular structure
+- Clear separation of concerns
+- Ready for horizontal scaling
+- Stateless backend
+- API versioning support
+- Add caching hooks/placeholders if useful
+- Add CI/CD-ready structure
+- Use best practices for Cloud Run containerization and startup
+
+8. Deliverables
+Generate:
+- Full folder structure
+- All important source files
+- package.json
+- pom.xml or build.gradle
+- Dockerfile
+- firebase.json
+- .firebaserc
+- .env.example
+- application yml files
+- README.md with:
+  - local setup
+  - Firebase setup
+  - backend setup
+  - deploy frontend to Firebase Hosting
+  - deploy backend to Cloud Run
+  - how Hosting routes /api to backend
+- Example auth flow
+- Example protected API endpoint
+- Example CRUD module
+
+9. Example business module
+Create one real feature module such as:
+- users
+or
+- products
+or
+- projects
+Include:
+- entity/dto/model
+- CRUD APIs
+- Vue pages
+- form validation
+- protected admin-only actions
+- list/detail/create/edit screens
+
+10. Output rules
+- Return code in logical sections by file path
+- Start with folder structure
+- Then provide files one by one
+- Do not skip configuration files
+- Do not use placeholders like "implement this later"
+- Code must be runnable with minimal edits
+- Prefer clean, idiomatic, production-style code
+
+11. Nice-to-have
+- GitHub Actions CI/CD examples
+- Unit test examples for backend
+- Vitest examples for frontend
+- Postman or OpenAPI examples
+- Structured logging
+- Request correlation ID support
+
+Before coding, briefly state:
+- chosen database
+- auth approach
+- deployment flow
+- config strategy
+
+Then generate the full project.
