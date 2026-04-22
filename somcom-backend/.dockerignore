@@ -1,0 +1,16 @@
+.git
+.gradle
+.gradle-user-home
+.gradle-user-home-8
+.g8
+.g802
+.g802g
+.g802g2
+.g802g3
+.t
+.tmp
+.wrapper-extract
+build
+out
+gradle-8.10.2-bin.zip
+wrapper-bootstrap.gradle
