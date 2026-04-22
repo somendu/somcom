@@ -1,0 +1,39 @@
+plugins {
+    id 'application'
+}
+
+group = 'com.somcom'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    vertxVersion = '4.5.13'
+    junitVersion = '5.10.2'
+}
+
+dependencies {
+    implementation "io.vertx:vertx-core:${vertxVersion}"
+    implementation "io.vertx:vertx-web:${vertxVersion}"
+    implementation "io.vertx:vertx-config:${vertxVersion}"
+    implementation "io.vertx:vertx-web-client:${vertxVersion}"
+
+    testImplementation platform("org.junit:junit-bom:${junitVersion}")
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+application {
+    mainClass = 'com.somcom.cart.Main'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
